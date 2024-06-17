@@ -13,7 +13,7 @@ import lombok.Setter;
 @EqualsAndHashCode
 public class MyOptional<T> {
 
-   private T value;
+   private  T value;
 
     static <T> MyOptional of(T value) {
 
@@ -29,10 +29,10 @@ public class MyOptional<T> {
             return new MyOptional<T>(value);
         }
 
-        return null;
+        return new MyOptional();
     }
 
-    public <T> T getValue() {
+    public  <T> T getValue() {
         return (T) value;
     }
 
@@ -41,7 +41,7 @@ public class MyOptional<T> {
         return this.getValue() != null;
     }
 
-    public <T> T orElse(T other) {
+    public  <T> T orElse(T other) {
         if (MyOptional.of(value) == null) {
        return other;
     }
