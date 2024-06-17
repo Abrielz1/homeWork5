@@ -26,10 +26,10 @@ public class MyOptional<T> {
     static <T> MyOptional ofNullable(T value) {
 
         if (value != null) {
-            return new MyOptional<T>(value);
+            return new MyOptional<>(value);
         }
 
-        return new MyOptional();
+        return new MyOptional(); // orElse сюда просится
     }
 
     public  <T> T getValue() {
