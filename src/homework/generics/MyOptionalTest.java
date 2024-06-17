@@ -15,10 +15,10 @@ public class MyOptionalTest {
         assertDoesNotThrow(() -> MyOptional.of(""));
         assertDoesNotThrow(() -> {
             var my = MyOptional.of(1d);
-            my.get();
+            my.getValue();
         });
         var str = MyOptional.of(STRING);
-        assertEquals(STRING, str.get());
+        assertEquals(STRING, str.getValue());
         assertThrows(InvalidParameterException.class, () -> MyOptional.of(null));
     }
 
@@ -32,7 +32,7 @@ public class MyOptionalTest {
         assertEquals(opt1, opt2);
 
         var str = MyOptional.ofNullable(STRING);
-        assertEquals(STRING, str.get());
+        assertEquals(STRING, str.getValue());
     }
 
     @DisplayName("isPresent test")
