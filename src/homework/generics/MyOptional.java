@@ -27,8 +27,6 @@ public class MyOptional<T> {
         }
 
         return (MyOptional<T>) EMPTY;
-
-//        return value == null ? (MyOptional<T>) EMPTY : new MyOptional<>(value);
     }
 
     public T getValue() {
