@@ -1,17 +1,12 @@
 package homework.generics;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Setter;
-
-@AllArgsConstructor
-@Setter
-@Builder
-@EqualsAndHashCode
 public class MyOptional<T> {
 
-   private final T value;
+    public MyOptional(T value) {
+        this.value = value;
+    }
+
+    private final T value;
 
    private static final MyOptional<?> EMPTY = new MyOptional<>(null);
 
@@ -27,13 +22,13 @@ public class MyOptional<T> {
     @SuppressWarnings("unchecked")
     static <T> MyOptional<T> ofNullable(T value) {
 
-//        if (value != null) {
-//            return new MyOptional<>(value);
-//        }
-//
-//        return new MyOptional<>(null);
+        if (value != null) {
+            return new MyOptional<>(value);
+        }
 
-        return value == null ? (MyOptional<T>) EMPTY : new MyOptional<>(value);
+        return new MyOptional<>(null);
+
+//        return value == null ? (MyOptional<T>) EMPTY : new MyOptional<>(value);
     }
 
     public T getValue() {
