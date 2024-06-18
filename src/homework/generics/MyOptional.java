@@ -3,68 +3,57 @@ package homework.generics;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @AllArgsConstructor
-@NoArgsConstructor
 @Setter
 @Builder
 @EqualsAndHashCode
 public class MyOptional<T> {
 
-   private  T value;
+   private final T value;
 
-    static <T> MyOptional of(T value) {
+   private static final MyOptional<?> EMPTY = new MyOptional<>(null);
+
+    static <T> MyOptional<T> of(T value) {
 
         if (value == null) {
             throw new InvalidParameterException();
         }
-        return ofNullable(value);
+
+        return new MyOptional<>(value);
     }
 
-    static <T> MyOptional ofNullable(T value) {
+    @SuppressWarnings("unchecked")
+    static <T> MyOptional<T> ofNullable(T value) {
 
-        if (value != null) {
-            return new MyOptional<>(value);
+//        if (value != null) {
+//            return new MyOptional<>(value);
+//        }
+//
+//        return new MyOptional<>(null);
+
+        return value == null ? (MyOptional<T>) EMPTY : new MyOptional<>(value);
+    }
+
+    public T getValue() {
+
+        if (value == null) {
+            throw new InvalidParameterException();
         }
 
-        return new MyOptional(); // orElse сюда просится
-    }
-
-    public  <T> T getValue() {
-        return (T) value;
+        return value;
     }
 
     public boolean isPresent() {
 
-        return this.getValue() != null;
+        return value != null;
     }
 
-    public  <T> T orElse(T other) {
-        if (MyOptional.of(value) == null) {
+    public T orElse(T other) {
+        if (value == null) {
        return other;
     }
-        return this.getValue();
+        return value;
     }
 }
-//public class MyOptional {
-//    static MyOptional of(Object value) {
-//        return new MyOptional();
-//    }
-//
-//    static MyOptional ofNullable(Object value) {
-//        return new MyOptional();
-//    }
-//
-//    public Object get() {
-//        return new Object();
-//    }
-//
-//    public boolean isPresent() {
-//        return true;
-//    }
-//
-//    public Object orElse(Object other) {
-//        return other;
-//    }

@@ -2,9 +2,7 @@ package homework.generics;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
-
 
 public class MyOptionalTest {
     private static final String STRING = "skillbox.ru";
