@@ -26,7 +26,7 @@ public class MyOptional<T> {
             return new MyOptional<>(value);
         }
 
-        return new MyOptional<>(null);
+        return (MyOptional<T>) EMPTY;
 
 //        return value == null ? (MyOptional<T>) EMPTY : new MyOptional<>(value);
     }
